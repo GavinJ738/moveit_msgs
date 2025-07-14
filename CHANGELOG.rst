@@ -2,6 +2,13 @@
 Changelog for package moveit_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.7.0 (2025-07-14)
+------------------
+* Add GetMultiStateValidity service (`#186 <https://github.com/moveit/moveit_msgs/issues/186>`_)
+  Co-authored-by: Aiden <148049589+rr-aiden@users.noreply.github.com>
+* CI: Update actions
+* Contributors: Lucian James, Robert Haschke
+
 2.6.0 (2024-09-16)
 ------------------
 * Add services for `LoadGeometryFromFile` and `SaveGeometryToFile` services (`#181 <https://github.com/ros-planning/moveit_msgs/issues/181>`_)
