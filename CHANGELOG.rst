@@ -2,8 +2,8 @@
 Changelog for package moveit_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.7.0 (2025-07-14)
+------------------
 * Add GetMultiStateValidity service (`#186 <https://github.com/moveit/moveit_msgs/issues/186>`_)
   Co-authored-by: Aiden <148049589+rr-aiden@users.noreply.github.com>
 * CI: Update actions
