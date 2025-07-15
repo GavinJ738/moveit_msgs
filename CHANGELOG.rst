@@ -2,8 +2,8 @@
 Changelog for package moveit_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.7.1 (2025-07-15)
+------------------
 * Address 2.7.0 release issues via re-release as 2.7.1
 * Contributors: Nathan Brooks
 
