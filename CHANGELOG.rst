@@ -2,6 +2,11 @@
 Changelog for package moveit_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Address 2.7.0 release issues via re-release as 2.7.1
+* Contributors: Nathan Brooks
+
 2.7.0 (2025-07-14)
 ------------------
 * Add GetMultiStateValidity service (`#186 <https://github.com/moveit/moveit_msgs/issues/186>`_)
