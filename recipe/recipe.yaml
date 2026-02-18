@@ -1,0 +1,58 @@
+context:
+  name: "ros-jazzy-moveit-msgs"
+  version: "2.7.0" # Matches the version in your package.xml
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  path: ..  # Assuming the recipe is in the moveit_msgs folder
+  use_gitignore: false
+build:
+  number: 0
+  script: |
+    # ROS 2 Jazzy build commands
+    # We use ament_cmake which requires CMAKE_PREFIX_PATH to find other ROS packages
+    mkdir build
+    cd build
+    cmake .. \
+      -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_PREFIX_PATH=$PREFIX \
+      -Drosidl_default_generators_DIR=$PREFIX/share/rosidl_default_generators/cmake \
+      -DBUILD_TESTING=OFF
+    make install
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-rosidl-default-generators
+  host:
+    - ros-jazzy-rosidl-default-runtime
+    - ros-jazzy-action-msgs
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-std-msgs
+    - ros-jazzy-geometry-msgs
+    - ros-jazzy-sensor-msgs
+    - ros-jazzy-shape-msgs
+    - ros-jazzy-object-recognition-msgs
+    - ros-jazzy-octomap-msgs
+    - ros-jazzy-trajectory-msgs
+  run:
+    - ros-jazzy-rosidl-default-runtime
+    - ros-jazzy-action-msgs
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-std-msgs
+    - ros-jazzy-geometry-msgs
+    - ros-jazzy-sensor-msgs
+    - ros-jazzy-shape-msgs
+    - ros-jazzy-object-recognition-msgs
+    - ros-jazzy-octomap-msgs
+    - ros-jazzy-trajectory-msgs
+
+about:
+  summary: "Message definitions for MoveIt"
+  homepage: "https://github.com/ros-planning/moveit_msgs"
