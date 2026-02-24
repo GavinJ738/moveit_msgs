@@ -18,7 +18,7 @@ jobs:
         with:
           recipe-path: recipe.yaml
           # Force the output folder to be built outside the source code tree
-          build-args: "--output-dir ../rattler_output -c https://prefix.dev/GavinJ738/colman -c robostack-jazzy -c conda-forge"
+          build-args: "--output-dir ../rattler_output -c https://repo.prefix.dev/GavinJ738/colman -c robostack-jazzy -c conda-forge"
 
       - name: Upload
         env:
