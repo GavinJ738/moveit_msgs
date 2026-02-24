@@ -14,6 +14,9 @@ jobs:
       # This installs rattler-build on the 24.04 runner
       - name: Setup Rattler-build
         uses: prefix-dev/rattler-build-action@v0.2.34
+        with:
+          recipe-path: recipe.yaml
+          build-args: "-c https://prefix.dev/GavinJ738/colman -c robostack-jazzy -c conda-forge"
 
       - name: Build Package
         run: |
