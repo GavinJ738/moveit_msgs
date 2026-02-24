@@ -1,0 +1,28 @@
+name: Build and Upload Package
+
+on: 
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build: 
+    - runs-on: ubuntu-24.04
+      uses: actions/checkout@v4
+    - name: Build Conda Package
+      uses: prefix-dev/rattler-build-action@v0.2.34
+      with:
+        recipe-path: recipe.yaml
+        # Pull dependencies from your channel first, then the internet
+        build-args: "-c https://prefix.dev/GavinJ/colman -c robostack-jazzy -c conda-forge"
+
+    - name: Upload to prefix.dev
+      shell: bash
+      env:
+        PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
+      run: |
+        for pkg in $(find output -type f -name "*.conda"); do
+          echo "Uploading ${pkg} to the colman channel"
+          rattler-build upload prefix -c colman "${pkg}"
+        done
