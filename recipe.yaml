@@ -7,7 +7,7 @@ package:
   version: ${{ version }}
 
 source:
-  path: ..  # Assuming the recipe is in the moveit_msgs folder
+  path: . 
   use_gitignore: false
 build:
   number: 0
