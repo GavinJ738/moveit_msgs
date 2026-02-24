@@ -13,7 +13,7 @@ jobs:
 
       # This installs rattler-build on the 24.04 runner
       - name: Setup Rattler-build
-        uses: prefix-dev/setup-rattler-build@v0
+        uses: prefix-dev/setup-rattler-build@v0.2.34
 
       - name: Build Package
         run: |
