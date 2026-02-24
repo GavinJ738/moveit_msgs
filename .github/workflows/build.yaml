@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   rattler-build-job:
@@ -12,16 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # This action automatically builds the package AND installs the CLI
       - name: Build Conda Package
         uses: prefix-dev/rattler-build-action@v0.2.34
         with:
           recipe-path: recipe.yaml
-          build-args: "-c https://prefix.dev/GavinJ738/colman -c robostack-jazzy -c conda-forge"
+          # Force the output folder to be built outside the source code tree
+          build-args: "--output-dir ../rattler_output -c https://prefix.dev/GavinJ738/colman -c robostack-jazzy -c conda-forge"
 
-      # Since it's already built, we just upload!
       - name: Upload
         env:
           PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
         run: |
-          rattler-build upload prefix -c colman output/linux-64/*.conda
+          rattler-build upload prefix -c colman ../rattler_output/linux-64/*.conda
