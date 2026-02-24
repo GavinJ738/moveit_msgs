@@ -1,28 +1,29 @@
-name: Build and Upload Package
+name: Build UR3e Packages (Ubuntu 24.04)
 
-on: 
+on:
   push:
-    branches:
-      - master
-  workflow_dispatch:
+    branches: master
 
 jobs:
-  build: 
-    - runs-on: ubuntu-24.04
-      uses: actions/checkout@v4
-    - name: Build Conda Package
-      uses: prefix-dev/rattler-build-action@v0.2.34
-      with:
-        recipe-path: recipe.yaml
-        # Pull dependencies from your channel first, then the internet
-        build-args: "-c https://prefix.dev/GavinJ/colman -c robostack-jazzy -c conda-forge"
+  rattler-build-job:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Upload to prefix.dev
-      shell: bash
-      env:
-        PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
-      run: |
-        for pkg in $(find output -type f -name "*.conda"); do
-          echo "Uploading ${pkg} to the colman channel"
-          rattler-build upload prefix -c colman "${pkg}"
-        done
+      # This installs rattler-build on the 24.04 runner
+      - name: Setup Rattler-build
+        uses: prefix-dev/setup-rattler-build@v0
+
+      - name: Build Package
+        run: |
+          rattler-build build --recipe recipe.yaml \
+          -c https://prefix.dev/GavinJ738/colman \
+          -c robostack-jazzy \
+          -c conda-forge
+
+      - name: Upload
+        env:
+          PREFIX_API_KEY: ${{ secrets.PREFIX_API_KEY }}
+        run: |
+          rattler-build upload prefix -c colman output/linux-64/*.conda
