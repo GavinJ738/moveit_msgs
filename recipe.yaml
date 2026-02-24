@@ -10,7 +10,7 @@ source:
   path: . 
   use_gitignore: false
 build:
-  number: 0
+  number: 1
   script: |
     # ROS 2 Jazzy build commands
     # We use ament_cmake which requires CMAKE_PREFIX_PATH to find other ROS packages
